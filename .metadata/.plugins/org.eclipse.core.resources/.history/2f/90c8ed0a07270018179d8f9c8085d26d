@@ -1,0 +1,99 @@
+package views.actividad1;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class MantenimientodeCuentas extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textNumCuenta;
+	private JTextField textSaldo;
+	private JTextField textDni_Propietario;
+	private JTextField txtId;
+	/**
+	 * Create the frame.
+	 */
+	public MantenimientodeCuentas() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Numero de Cuenta: ");
+		lblNewLabel.setBounds(10, 74, 111, 20);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblIdCuenta = new JLabel("Id Cuenta : ");
+		lblIdCuenta.setBounds(10, 36, 76, 14);
+		contentPane.add(lblIdCuenta);
+		
+		textNumCuenta = new JTextField();
+		textNumCuenta.setBounds(114, 74, 187, 20);
+		contentPane.add(textNumCuenta);
+		textNumCuenta.setColumns(10);
+		
+		JLabel lblSaldo = new JLabel("Saldo :");
+		lblSaldo.setBounds(7, 117, 65, 20);
+		contentPane.add(lblSaldo);
+		
+		JLabel lblDnipropietario = new JLabel("Dni_Propietario : ");
+		lblDnipropietario.setBounds(10, 163, 89, 14);
+		contentPane.add(lblDnipropietario);
+		
+		textSaldo = new JTextField();
+		textSaldo.setBounds(114, 117, 86, 20);
+		contentPane.add(textSaldo);
+		textSaldo.setColumns(10);
+		
+		textDni_Propietario = new JTextField();
+		textDni_Propietario.setBounds(114, 160, 111, 20);
+		contentPane.add(textDni_Propietario);
+		textDni_Propietario.setColumns(10);
+		
+		JButton btnAceptar = new JButton("Nuevo");
+		btnAceptar.setBounds(15, 213, 89, 23);
+		contentPane.add(btnAceptar);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnCancelar.setBounds(327, 213, 89, 23);
+		contentPane.add(btnCancelar);
+		
+		txtId = new JTextField();
+		txtId.setBounds(114, 33, 86, 20);
+		contentPane.add(txtId);
+		txtId.setColumns(10);
+		
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setBounds(212, 32, 89, 23);
+		contentPane.add(btnBuscar);
+		
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnModificar.setBounds(119, 213, 89, 23);
+		contentPane.add(btnModificar);
+		
+		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.setBounds(223, 213, 89, 23);
+		contentPane.add(btnEliminar);
+	}
+}

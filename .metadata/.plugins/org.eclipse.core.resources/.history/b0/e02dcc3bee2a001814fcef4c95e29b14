@@ -1,0 +1,35 @@
+package com.orm.service;
+
+import org.hibernate.Session;
+
+import com.orm.configuracion.AppConfig;
+import com.orm.entity.Propietario;
+
+public class PropietarioService {
+
+	private  static Session sessionObj;
+	private  AppConfig conf;
+	
+	
+	public PropietarioService() {
+		conf = new AppConfig();
+		sessionObj = conf.buildSessionFactory().openSession();
+		
+	}
+	public void insertar(Propietario prop) {
+		sessionObj.beginTransaction();
+		sessionObj.save(prop);
+		sessionObj.getTransaction().commit();
+
+	}
+	public void delete(Propietario prop) {
+		sessionObj.delete(prop);
+		
+	}
+	
+	public void select(Propietario prop) {
+		
+		
+	}
+	
+}

@@ -1,0 +1,111 @@
+package views.actividad1;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+
+public class MantenimientodeOperaciones extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textId_Operaciones;
+	private JTextField textFechahora;
+	private JTextField textCantidad;
+	private JTextField textSaldoActualizado;
+	private JTextField textId_Cuenta;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MantenimientodeOperaciones frame = new MantenimientodeOperaciones();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public MantenimientodeOperaciones() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 551, 383);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblIdoperaciones = new JLabel("Id_Operaciones:");
+		lblIdoperaciones.setBounds(20, 36, 93, 22);
+		contentPane.add(lblIdoperaciones);
+		
+		textId_Operaciones = new JTextField();
+		textId_Operaciones.setBounds(167, 37, 86, 20);
+		contentPane.add(textId_Operaciones);
+		textId_Operaciones.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Fecha-Hora :");
+		lblNewLabel.setBounds(20, 79, 80, 22);
+		contentPane.add(lblNewLabel);
+		
+		textFechahora = new JTextField();
+		textFechahora.setBounds(167, 80, 86, 20);
+		contentPane.add(textFechahora);
+		textFechahora.setColumns(10);
+		
+		JLabel lblTipo = new JLabel("Tipo:");
+		lblTipo.setBounds(20, 117, 46, 14);
+		contentPane.add(lblTipo);
+		
+		JComboBox cmbTipo = new JComboBox();
+		cmbTipo.setBounds(166, 114, 71, 20);
+		contentPane.add(cmbTipo);
+		
+		JLabel lblCantidad = new JLabel("Cantidad: ");
+		lblCantidad.setBounds(20, 165, 60, 14);
+		contentPane.add(lblCantidad);
+		
+		textCantidad = new JTextField();
+		textCantidad.setBounds(167, 162, 86, 20);
+		contentPane.add(textCantidad);
+		textCantidad.setColumns(10);
+		
+		JLabel lblSaldoActualizado = new JLabel("Saldo Actualizado :");
+		lblSaldoActualizado.setBounds(20, 208, 104, 14);
+		contentPane.add(lblSaldoActualizado);
+		
+		textSaldoActualizado = new JTextField();
+		textSaldoActualizado.setBounds(167, 205, 86, 20);
+		contentPane.add(textSaldoActualizado);
+		textSaldoActualizado.setColumns(10);
+		
+		JLabel lblIdcuentaBancaria = new JLabel("Id_Cuenta Bancaria:");
+		lblIdcuentaBancaria.setBounds(20, 256, 115, 14);
+		contentPane.add(lblIdcuentaBancaria);
+		
+		textId_Cuenta = new JTextField();
+		textId_Cuenta.setBounds(167, 253, 86, 20);
+		contentPane.add(textId_Cuenta);
+		textId_Cuenta.setColumns(10);
+		
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBounds(264, 297, 89, 23);
+		contentPane.add(btnAceptar);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(408, 297, 89, 23);
+		contentPane.add(btnCancelar);
+	}
+}

@@ -1,0 +1,26 @@
+package com.orm.configuracion;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+
+public class AppConfig {
+	static Session sessionObj;
+	static SessionFactory sessionFactoryObj;
+
+	private static SessionFactory buildSessionFactory() {
+		Configuration configObj = new Configuration();
+		configObj.configure("hibernate.cfg.xml");
+		ServiceRegistry serviceRegistryObj = new StandardServiceRegistryBuilder()
+				.applySettings(configObj.getProperties()).build();
+		// Creating Hibernate SessionFactory Instance
+
+		sessionFactoryObj = configObj.buildSessionFactory(serviceRegistryObj);
+
+		return sessionFactoryObj;
+
+	}
+
+}

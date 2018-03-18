@@ -1,0 +1,62 @@
+package com.orm.service;
+
+import org.hibernate.Session;
+import org.hibernate.transform.AliasToEntityMapResultTransformer;
+
+import com.orm.configuracion.AppConfig;
+import com.orm.entity.Propietario;
+
+import java.util.List;
+
+import org.hibernate.Query;
+
+public class PropietarioService {
+
+	private  static Session session;
+	private  AppConfig conf;
+	
+	
+	public PropietarioService(AppConfig conf) {
+		this.conf = conf;
+		session = conf.buildSessionFactory().openSession();
+		
+	}
+	public void insertarPropietario(Propietario prop) {
+		session.beginTransaction();
+		session.save(prop);
+		session.getTransaction().commit();
+
+	}
+	
+	public void modificarPropietario(Propietario propietario) {
+		
+	}
+	public void eliminarPropietario(Propietario prop) {
+		session.beginTransaction();
+		session.delete(prop);
+		session.getTransaction().commit();
+		
+	}
+	
+	public Propietario consultarPropietarioByDni(Propietario prop) {
+		String query= "Select * from propietarios where dni ='"+ prop.getDni()+ "'";
+		Query q= session.createQuery(query);
+		return null;
+		
+	}
+	public Propietario consultarPropietarioByUsuarioPassword(Propietario prop) {
+		String query= "Select * from propietarios where usuario ='"+ prop.getUsuario()+ "' and numerosecreto='" + prop.getNumerosecreto() + "'";
+		Query q= session.createQuery(query);
+		q.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
+		return null;
+	}
+	
+	public boolean validarUsuarioPassword(String usuario,String password) {
+		String query= "select * from propietarios where usuario = '" + usuario + "' and numerosecreto = '" +  password + "'";
+		Query q= session.createQuery(query);
+		return false;
+		
+		
+	}
+	
+}

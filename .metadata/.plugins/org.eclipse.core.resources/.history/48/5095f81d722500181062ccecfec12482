@@ -1,0 +1,71 @@
+package actividad1.servicios;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.mysql.jdbc.Statement;
+
+import actividad1.domain.Historial;
+
+
+public class HistorialService {
+
+	Connection conn=null;
+
+	
+	public HistorialService(Connection conn) {
+		super();
+		this.conn = conn;
+	}
+	
+	public void insertarHistorial(Historial historial) throws SQLException {
+		
+		String query= "INSERT INTO historial(id,tipoEvento,fecha_horaevento,id_cuentabancaria) VALUES(?,?,?,?)";
+		PreparedStatement pst= conn.prepareStatement(query);
+		pst.setInt(1, historial.getId());
+		pst.setString(2, historial.getTipoEvento());
+		pst.setDate(3, (Date) historial.getFecha_horaevento());
+		pst.setInt(4, historial.getId_cuentabancaria());
+		
+		pst.executeUpdate();
+		pst.close();
+		
+	}
+	
+	public void modificarHistorial(Historial historial) throws SQLException {
+		String query= "UPDATE historial set tipoEvento= ?, where id_cuentabancaria=?";
+		PreparedStatement pst= conn.prepareStatement(query);
+		pst.setString(1, historial.getTipoEvento());
+		pst.setInt(2, historial.getId_cuentabancaria());
+		
+		pst.executeUpdate();
+		pst.close();
+		
+	}
+	public void eliminarHistorial(Historial historial) throws SQLException {
+		String query= "delete from  historial where id_cuentabancaria=? "+ historial.getId_cuentabancaria();
+		Statement st= (Statement) conn.createStatement();
+		st.executeQuery(query);
+		st.close();
+		
+	}
+	
+	public void consultarHistorialByCtaBancaria(Historial historial) throws SQLException {
+		
+		String query= "select * from historial where id_cuentabancaria=?" + historial.getId_cuentabancaria();
+		Statement st= (Statement) conn.createStatement();
+		ResultSet rs= st.executeQuery(query);
+		
+		Historial hist= new Historial(query, null, 0);
+		
+		
+		
+		while(rs.next()) {
+			hist.setId_cuentabancaria(rs.getInt("id_cuentabancaria"));
+	
+		}
+}
+}

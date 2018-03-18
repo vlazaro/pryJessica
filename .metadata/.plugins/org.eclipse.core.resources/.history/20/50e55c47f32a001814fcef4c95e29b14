@@ -1,0 +1,51 @@
+package com.orm.service;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
+
+import javax.swing.JTable;
+
+import com.mysql.jdbc.Statement;
+import com.orm.entity.Operacion;
+import com.orm.entity.Propietario;
+
+
+public class HistorialService {
+
+	private JTable tblOperaciones;
+	Connection conn = null;
+
+	public HistorialService(Connection conn) {
+		super();
+		this.conn = conn;
+	}
+
+	public void insertarHistorialOperacion(Operacion op) throws SQLException {
+
+		String query = "INSERT INTO historial(tipoEvento,fechahoraevento,id_cuentabancaria) VALUES(?,?,?)";
+		
+
+	}
+
+	public void insertarHistorialLogin(Propietario prop) throws SQLException {
+
+		String query = "INSERT INTO historial(tipoEvento,fechahoraevento,dni_propietario) VALUES(?,?,?)";
+		
+		Timestamp timestamp = new Timestamp(new Date().getTime());
+
+	}
+
+
+	public ResultSet consultaFechaHoraUltimoInicioSesio( String dniPropietario) throws SQLException {
+		String query = "SELECT * FROM HISTORIAL WHERE dni_propietario ='"+ dniPropietario + "'  and fechahoraevento = (select max(fechahoraevento)  from historial " + 
+				"where dni_propietario ='"+ dniPropietario + "')";
+		
+		return rs;
+		
+	}
+
+}

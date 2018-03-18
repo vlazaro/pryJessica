@@ -1,0 +1,82 @@
+package views.actividad1;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.border.BevelBorder;
+import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class MantenimientodeOperaciones extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MantenimientodeOperaciones frame = new MantenimientodeOperaciones();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public MantenimientodeOperaciones() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 398, 218);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnCancelar.setBounds(274, 135, 89, 23);
+		contentPane.add(btnCancelar);
+		
+		JLabel lblNroCuenta = new JLabel("Nro Cuenta");
+		lblNroCuenta.setBounds(33, 22, 75, 14);
+		contentPane.add(lblNroCuenta);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(118, 19, 189, 20);
+		contentPane.add(comboBox);
+		
+		JLabel lblCantidad = new JLabel("Cantidad");
+		lblCantidad.setBounds(33, 76, 46, 14);
+		contentPane.add(lblCantidad);
+		
+		textField = new JTextField();
+		textField.setBounds(118, 73, 86, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JButton btnIngresar = new JButton("Ingresar");
+		btnIngresar.setBounds(118, 135, 89, 23);
+		contentPane.add(btnIngresar);
+	}
+}

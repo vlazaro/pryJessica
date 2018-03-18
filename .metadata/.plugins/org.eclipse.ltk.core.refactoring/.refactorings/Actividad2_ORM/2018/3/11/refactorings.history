@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 4 elements from project &apos;Actividad2_ORM&apos;&#x0D;&#x0A;- Original project: &apos;Actividad2_ORM&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     com.orm.entity.CuentaBancaria.java&#x0D;&#x0A;     com.orm.entity.Historial.java&#x0D;&#x0A;     com.orm.entity.Operacion.java&#x0D;&#x0A;     com.orm.entity.Propietario.java" description="Delete elements" element1="/src&lt;com.orm.entity{Propietario.java" element2="/src&lt;com.orm.entity{Historial.java" element3="/src&lt;com.orm.entity{CuentaBancaria.java" element4="/src&lt;com.orm.entity{Operacion.java" elements="4" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1521403346829" subPackages="false" version="1.0"/>
+</session>
