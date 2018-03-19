@@ -37,7 +37,7 @@ public class PropietariosService {
 	
 	public Propietario consultarPropietarioByDni(Propietario prop) {
 		Transaction tx=null;
-		tx=session.beginTransaction(); //Crea una transacción
+		tx=session.beginTransaction(); 
 		Propietario propietario = (Propietario) session.get(Propietario.class,prop.getDni());
 		tx.commit(); 
         
@@ -45,15 +45,15 @@ public class PropietariosService {
 		
 	}
 	public Propietario consultarPropietarioByUsuarioPassword(Propietario prop) {
-		String query= "Select p.* from propietario p where usuario ='"+ prop.getUsuario()+ "' and numerosecreto='" + prop.getNumerosecreto() + "'";
+		String query= "Select p from Propietario p where usuario ='"+ prop.getUsuario()+ "' and numerosecreto='" + prop.getNumerosecreto() + "'";
 		Propietario propietario = (Propietario) session.createQuery(query);
 		return propietario;
 		
 	}
 	
 	public boolean validarUsuarioPassword(String usuario,String password) {
-		String query= "select p.* from propietario p where usuario = '" + usuario + "' and numerosecreto = '" +  password + "'";
-		Propietario propietario = (Propietario) session.createQuery(query);
+		String query= "select p from Propietario p where usuario = '" + usuario + "' and numerosecreto = '" +  password + "'";
+		Propietario propietario = (Propietario) session.createQuery(query).uniqueResult();
 		if (propietario.getDni().isEmpty()) {
 			return false;
 		}

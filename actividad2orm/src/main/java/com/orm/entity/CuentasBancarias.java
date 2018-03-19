@@ -11,8 +11,8 @@ import java.util.List;
  */
 @Entity
 @Table(name="cuentasbancarias")
-@NamedQuery(name="Cuentasbancaria.findAll", query="SELECT c FROM Cuentasbancaria c")
-public class CuentaBancaria implements Serializable {
+@NamedQuery(name="CuentasBancarias.findAll", query="SELECT c FROM CuentasBancarias c")
+public class CuentasBancarias implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -29,9 +29,9 @@ public class CuentaBancaria implements Serializable {
 
 	//bi-directional many-to-one association to Operacione
 	@OneToMany(mappedBy="cuentasbancaria")
-	private List<Operacion> operaciones;
+	private List<Operaciones> operaciones;
 
-	public CuentaBancaria() {
+	public CuentasBancarias() {
 	}
 
 	public int getId() {
@@ -66,22 +66,22 @@ public class CuentaBancaria implements Serializable {
 		this.propietario = propietario;
 	}
 
-	public List<Operacion> getOperaciones() {
+	public List<Operaciones> getOperaciones() {
 		return this.operaciones;
 	}
 
-	public void setOperaciones(List<Operacion> operaciones) {
+	public void setOperaciones(List<Operaciones> operaciones) {
 		this.operaciones = operaciones;
 	}
 
-	public Operacion addOperacione(Operacion operacione) {
+	public Operaciones addOperacione(Operaciones operacione) {
 		getOperaciones().add(operacione);
 		operacione.setCuentasbancaria(this);
 
 		return operacione;
 	}
 
-	public Operacion removeOperacione(Operacion operacione) {
+	public Operaciones removeOperacione(Operaciones operacione) {
 		getOperaciones().remove(operacione);
 		operacione.setCuentasbancaria(null);
 

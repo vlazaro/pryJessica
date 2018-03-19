@@ -4,10 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 
-import com.orm.entity.Operacion;
+import com.orm.entity.CuentasBancarias;
+import com.orm.entity.Historial;
+import com.orm.entity.Operaciones;
 import com.orm.entity.Propietario;
 
 public class HistorialService {
@@ -17,28 +20,49 @@ public class HistorialService {
 		this.session = session;
 	}
 
-	public void insertarHistorialOperacion(Operacion op) throws SQLException {
+	public void insertarHistorialOperacion(Operaciones op) {
 
-		String query = "INSERT INTO historial(tipoEvento,fechahoraevento,id_cuentabancaria) VALUES(?,?,?)";
-
+		Historial historial = new Historial();
+		historial.setTipoevento(op.getTipo());
+		Timestamp timestamp = new Timestamp(new Date().getTime());
+		historial.setFechahoraevento(timestamp);
+		historial.setIdCuentabancaria(op.getCuentasbancaria().getNumcuenta());
+		
+		session.beginTransaction();
+		session.save(historial);
+		session.getTransaction().commit();
+		
 	}
 
 	public void insertarHistorialLogin(Propietario prop) throws SQLException {
 
-		String query = "INSERT INTO historial(tipoEvento,fechahoraevento,dni_propietario) VALUES(?,?,?)";
-
+		Historial historial = new Historial();
+		historial.setTipoevento("L");
 		Timestamp timestamp = new Timestamp(new Date().getTime());
+		historial.setFechahoraevento(timestamp);
+		historial.setDniPropietario(prop.getDni());
+		
+		session.beginTransaction();
+		session.save(historial);
+		session.getTransaction().commit();
+				
+		
+		
+		
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public ResultSet consultaFechaHoraUltimoInicioSesio(String dniPropietario) throws SQLException {
 		String query = "SELECT * FROM HISTORIAL WHERE dni_propietario ='" + dniPropietario
 				+ "'  and fechahoraevento = (select max(fechahoraevento)  from historial " + "where dni_propietario ='"
 				+ dniPropietario + "')";
 
-		ResultSet rs = null;
+		session.beginTransaction();
+		List<CuentasBancarias> result = (List<CuentasBancarias>)session.createQuery(query).list();
+		session.beginTransaction();
+		ResultSet rs = (ResultSet) result;
 		return rs;
-
 	}
 
 }

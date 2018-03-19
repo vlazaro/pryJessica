@@ -11,8 +11,8 @@ import java.util.Date;
  */
 @Entity
 @Table(name="operaciones")
-@NamedQuery(name="Operacione.findAll", query="SELECT o FROM Operacione o")
-public class Operacion implements Serializable {
+@NamedQuery(name="Operaciones.findAll", query="SELECT o FROM Operaciones o")
+public class Operaciones implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -30,9 +30,9 @@ public class Operacion implements Serializable {
 	//bi-directional many-to-one association to Cuentasbancaria
 	@ManyToOne
 	@JoinColumn(name="id_cuentabancaria")
-	private CuentaBancaria cuentasbancaria;
+	private CuentasBancarias cuentasbancaria;
 
-	public Operacion() {
+	public Operaciones() {
 	}
 
 	public int getId() {
@@ -75,11 +75,11 @@ public class Operacion implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public CuentaBancaria getCuentasbancaria() {
+	public CuentasBancarias getCuentasbancaria() {
 		return this.cuentasbancaria;
 	}
 
-	public void setCuentasbancaria(CuentaBancaria cuentasbancaria) {
+	public void setCuentasbancaria(CuentasBancarias cuentasbancaria) {
 		this.cuentasbancaria = cuentasbancaria;
 	}
 

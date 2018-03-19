@@ -1,5 +1,8 @@
 package com.orm.service;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,8 +10,8 @@ import java.util.List;
 import org.hibernate.Session;
 
 
-import com.orm.entity.CuentaBancaria;
-import com.orm.entity.Operacion;
+import com.orm.entity.CuentasBancarias;
+import com.orm.entity.Operaciones;
 
 public class OperacionesService {
 
@@ -19,93 +22,115 @@ public class OperacionesService {
 		this.session = session;
 	}
 
-	public void insertarOperacion(Operacion operacion) {
+	public void insertarOperacion(Operaciones operacion) {
 		
-		session.beginTransaction();
-		session.save(operacion);
-		session.getTransaction().commit();
+			
+			String tipo;
+			if (operacion.getCantidad() >= 0) {
+				tipo = "I";
+			} else {
+				tipo = "E";
+			}
+			Operaciones opPrevia = recupearOperacionPrevia(operacion.getCuentasbancaria().getId());
+			Double saldoActual = obtenerSaldoActualizado(opPrevia, operacion.getCuentasbancaria().getId(), tipo,
+					operacion.getCantidad());
+			session.beginTransaction();
+			operacion.setSaldoactualizado(saldoActual);
+			operacion.setTipo(tipo);
+			Timestamp timestamp = new Timestamp(new Date().getTime());
+			operacion.setFechahora(timestamp);
+			HistorialService historial = new HistorialService(session);
+			historial.insertarHistorialOperacion(operacion);
+			session.getTransaction().commit();
 
 		
 	}
 
-	public void modificarOperaciones(Operacion operaciones) {
+	public void modificarOperaciones(Operaciones operaciones) {
 		session.beginTransaction();
 		session.update(operaciones);
 		session.getTransaction().commit();
 	}
 
+	@SuppressWarnings("unchecked")
 	public ResultSet listarOperacionesRojo(String nroCuenta)  {
 		String query = "SELECT o.* FROM operaciones o, cuentasbancarias c where o.saldoactualizado <0 and o.id_cuentabancaria = c.id and c.numcuenta =" + nroCuenta;
 		
-		ResultSet rs = null;
+		List<Operaciones> result = (List<Operaciones>)session.createQuery(query).list();
+		ResultSet rs = (ResultSet) result;
 		return rs;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public ResultSet listarCuentasEnRojo()  {
 		String query = "SELECT c.* ,o.saldoactualizado FROM operaciones o , cuentasbancarias c  where o.id_cuentabancaria = c.id " + 
 				"and o.saldoactualizado <0";
 		
-		ResultSet rs = null;
+		List<Operaciones> result = (List<Operaciones>)session.createQuery(query).list();
+		ResultSet rs = (ResultSet) result;
 		return rs;
 	}
 
+	@SuppressWarnings("unchecked")
 	public ResultSet listarOperaciones(String nroCuenta)  {
 		String query = "SELECT o.* FROM operaciones o, cuentasbancarias c where o.id_cuentabancaria = c.id and c.numcuenta =" + nroCuenta;
-		
-		ResultSet rs = null;
+		List<Operaciones> result = (List<Operaciones>)session.createQuery(query).list();
+		ResultSet rs = (ResultSet) result;
 		return rs;
 	}
 
-	public void eliminarOperaciones(Operacion operaciones)  {
-		String query = "delete from operaciones where num_cuenta=? " + operaciones.getCuentasbancaria().getNumcuenta();
+	public void eliminarOperaciones(Operaciones operaciones)  {
+		session.beginTransaction();
+		session.save(operaciones);
+		session.getTransaction().commit();
 		
 	}
 
 	@SuppressWarnings("unused")
 	// Consulta de operaciones por id
-	private Operacion consultarOperacionByIdOperacion(Operacion operaciones)  {
-
+	private Operaciones consultarOperacionByIdOperacion(Operaciones operaciones)  {
 		String query = "select *from operaciones where id=?" + operaciones.getId();
-		
-		Operacion op = null;
-		return op;
+		List<Operaciones> result = (List<Operaciones>)session.createQuery(query).list();
+		return result.get(0);
 	}
 
-	private Operacion consultarOperacionByIdCuenta(Operacion operaciones)  {
+	@SuppressWarnings("unchecked")
+	private Operaciones consultarOperacionByIdCuenta(Operaciones operaciones)  {
 
 		String query = "select *from operaciones where id_cuentabancaria=?" + operaciones.getCuentasbancaria().getId();
-		
-		Operacion op = null;
-		return op;
+		List<Operaciones> result = (List<Operaciones>)session.createQuery(query).list();
+		return result.get(0);
 	}
 
 	// Consulta de todas las operaciones:
 
-	private List<Operacion> consultarListaoperaciones()  {
+	private List<Operaciones> consultarListaoperaciones()  {
 
 		String query = "select * from operaciones ";
-		
-
-		List<Operacion> operaciones = null;
-		return operaciones;
+		session.beginTransaction();
+		List<Operaciones> result = (List<Operaciones>)session.createQuery(query).list();
+		session.getTransaction().commit();
+		return result;
 
 	}
 
-	private Operacion recupearOperacionPrevia(int idCuenta)  {
+	@SuppressWarnings("unchecked")
+	private Operaciones recupearOperacionPrevia(int idCuenta)  {
 		String query = "SELECT * FROM operaciones where id_cuentabancaria =" + idCuenta + " and "
 				+ "fechahora = (SELECT MAX(fechahora) FROM operaciones where id_cuentabancaria = " + idCuenta + ")";
-		
-		Operacion op = null;
-		return op;
+		session.beginTransaction();
+		List<Operaciones> result = (List<Operaciones>)session.createQuery(query).list();
+		session.getTransaction().commit();
+		return result.get(0);
 	}
 
-	private CuentaBancaria recuperarCuenta(int idCuenta)  {
+	private CuentasBancarias recuperarCuenta(int idCuenta)  {
 		CuentaBancariaService ctaservice = new CuentaBancariaService(session);
-		CuentaBancaria ctabancaria = ctaservice.consultarCuenta(idCuenta);
+		CuentasBancarias ctabancaria = ctaservice.consultarCuenta(idCuenta);
 		return ctabancaria;
 	}
 
-	private Double obtenerSaldoActualizado(Operacion opPrevia, int cuenta, String tipo, Double cantidad)
+	private Double obtenerSaldoActualizado(Operaciones opPrevia, int cuenta, String tipo, Double cantidad)
 			 {
 		Double saldoActual = 0.0;
 		if (opPrevia.getId() != 0) {
@@ -113,7 +138,7 @@ public class OperacionesService {
 			saldoActual = saldoPrevio + cantidad;
 
 		} else {
-			CuentaBancaria cta = recuperarCuenta(cuenta);
+			CuentasBancarias cta = recuperarCuenta(cuenta);
 			Double saldoInicial = cta.getSaldo();
 			saldoActual = saldoInicial + cantidad;
 
