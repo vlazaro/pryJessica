@@ -30,7 +30,7 @@ public class Propietario implements Serializable {
 
 	//bi-directional many-to-one association to Cuentasbancaria
 	@OneToMany(mappedBy="propietario")
-	private List<CuentaBancaria> cuentasbancarias;
+	private List<CuentasBancarias> cuentasbancarias;
 
 	public Propietario() {
 	}
@@ -83,22 +83,22 @@ public class Propietario implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public List<CuentaBancaria> getCuentasbancarias() {
+	public List<CuentasBancarias> getCuentasbancarias() {
 		return this.cuentasbancarias;
 	}
 
-	public void setCuentasbancarias(List<CuentaBancaria> cuentasbancarias) {
+	public void setCuentasbancarias(List<CuentasBancarias> cuentasbancarias) {
 		this.cuentasbancarias = cuentasbancarias;
 	}
 
-	public CuentaBancaria addCuentasbancaria(CuentaBancaria cuentasbancaria) {
+	public CuentasBancarias addCuentasbancaria(CuentasBancarias cuentasbancaria) {
 		getCuentasbancarias().add(cuentasbancaria);
 		cuentasbancaria.setPropietario(this);
 
 		return cuentasbancaria;
 	}
 
-	public CuentaBancaria removeCuentasbancaria(CuentaBancaria cuentasbancaria) {
+	public CuentasBancarias removeCuentasbancaria(CuentasBancarias cuentasbancaria) {
 		getCuentasbancarias().remove(cuentasbancaria);
 		cuentasbancaria.setPropietario(null);
 

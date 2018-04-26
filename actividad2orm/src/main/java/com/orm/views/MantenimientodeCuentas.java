@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.orm.configuracion.AppConfig;
-import com.orm.entity.CuentaBancaria;
+import com.orm.entity.CuentasBancarias;
 import com.orm.entity.Propietario;
 import com.orm.service.CuentaBancariaService;
 import com.orm.service.PropietariosService;
@@ -87,7 +87,7 @@ public class MantenimientodeCuentas extends JFrame {
 					btnEliminar.setEnabled(false);
 
 				} else {
-					CuentaBancaria cuenta = new CuentaBancaria();
+					CuentasBancarias cuenta = new CuentasBancarias();
 					cuenta.setNumcuenta(textNumCuenta.getText());
 					Double saldo = Double.parseDouble(textSaldo.getText());
 					Propietario prop = new Propietario();
@@ -117,7 +117,7 @@ public class MantenimientodeCuentas extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				CuentaBancaria cuenta = new CuentaBancaria();
+				CuentasBancarias cuenta = new CuentasBancarias();
 
 				cuenta = cta.consultarCuenta(textNumCuenta.getText());
 				String s = String.valueOf(cuenta.getSaldo());
@@ -137,7 +137,7 @@ public class MantenimientodeCuentas extends JFrame {
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				CuentaBancaria cuenta = new CuentaBancaria();
+				CuentasBancarias cuenta = new CuentasBancarias();
 				cuenta.setNumcuenta(textNumCuenta.getText());
 				double saldo = Double.parseDouble(textSaldo.getText());
 				cuenta.setSaldo(saldo);
@@ -154,7 +154,7 @@ public class MantenimientodeCuentas extends JFrame {
 		btnEliminar = new JButton("Eliminar");
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CuentaBancaria cuenta = new CuentaBancaria();
+				CuentasBancarias cuenta = new CuentasBancarias();
 				cuenta.setNumcuenta(textNumCuenta.getText());
 				cta.eliminarCuenta(cuenta);
 				btnModificar.setEnabled(false);

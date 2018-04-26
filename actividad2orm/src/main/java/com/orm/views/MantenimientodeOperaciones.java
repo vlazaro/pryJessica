@@ -16,8 +16,8 @@ import java.awt.Color;
 import javax.swing.table.DefaultTableModel;
 
 import com.orm.configuracion.AppConfig;
-import com.orm.entity.CuentaBancaria;
-import com.orm.entity.Operacion;
+import com.orm.entity.CuentasBancarias;
+import com.orm.entity.Operaciones;
 import com.orm.service.CuentaBancariaService;
 import com.orm.service.OperacionesService;
 
@@ -74,9 +74,9 @@ public class MantenimientodeOperaciones extends JFrame {
 		JButton btnIngresar = new JButton("Ingresar");
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Operacion op = new Operacion();
+				Operaciones op = new Operaciones();
 
-				CuentaBancaria cta = new CuentaBancaria();
+				CuentasBancarias cta = new CuentasBancarias();
 
 				cta = ctaservice.consultarCuenta(textNumCuenta.getText());
 				op.setCuentasbancaria(cta);

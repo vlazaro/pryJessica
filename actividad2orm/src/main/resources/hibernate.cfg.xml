@@ -11,17 +11,17 @@
 		<!-- Database Connection Settings -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/operacionesbancarias</property>
-		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password">root</property>
+		<property name="hibernate.connection.username">be3aapi</property>
+		<property name="hibernate.connection.password">be3aapi</property>
 		<property name="show_sql">true</property>
 
 		<!-- Specifying Session Context -->
 		<property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
 
 		<!-- Mapping With Model Class Containing Annotations -->
-		<mapping class="com.orm.entity.Cuentasbancaria" />
+		<mapping class="com.orm.entity.CuentasBancarias" />
 		<mapping class="com.orm.entity.Historial" />
-		<mapping class="com.orm.entity.Operacione" />
+		<mapping class="com.orm.entity.Operaciones" />
 		<mapping class="com.orm.entity.Propietario" />
 		
 		
