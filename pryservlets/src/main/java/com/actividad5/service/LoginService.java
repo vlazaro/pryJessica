@@ -32,7 +32,7 @@ public class LoginService {
             tx.begin();
 //            Query query = session.createQuery("from User where userId='"+userId+"'");
 //            user = (User)query.uniqueResult();
-            TypedQuery<User> query = session.createQuery("from User where userId='"+user.getUserId()+"'");
+            TypedQuery<User> query = session.createQuery("from User where userId='"+ userId +"'");
             user = query.getSingleResult();
             tx.commit();
         } catch (Exception e) {
