@@ -7,7 +7,7 @@
         <title>Login Page</title>
     </head>    
     <body>
-    <center>
+
         <div id="mystyle" class="myform">
             <form id="form" name="form" method="post" action="LoginServlet">
                 <h1>Login</h1>
@@ -27,6 +27,6 @@
                 <div class="spacer"></div>
             </form>
         </div>
-    </center>
+
 </body>
 </html>

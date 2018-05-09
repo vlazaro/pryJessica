@@ -13,7 +13,7 @@
         <title>Registration Page</title>        
     </head>
     <body>
-    <center>
+
         <div id="mystyle" class="myform">
             <form id="form" name="form" method="post" action="RegisterServlet">
                 <h1>Registration</h1>
@@ -54,6 +54,6 @@
 
             </form>
         </div>
-    </center>    
+   
 </body>
 </html>

@@ -3,7 +3,9 @@ package com.actividad5.service;
 
 import com.actividad5.model.User;
 import com.actividad5.util.HibernateUtil;
-import org.hibernate.Query;
+
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -29,7 +31,7 @@ public class RegisterService {
         }        
         return true;
     }
-    
+    @SuppressWarnings("unchecked")
     public boolean isUserExists(User user){
         Session session = HibernateUtil.openSession();
         boolean result = false;
@@ -37,8 +39,10 @@ public class RegisterService {
         try{
             tx = session.getTransaction();
             tx.begin();
-            Query query = session.createQuery("from User where userId='"+user.getUserId()+"'");
-            User u = (User)query.uniqueResult();
+            //Query query = session.createQuery("from User where userId='"+user.getUserId()+"'");
+            // User u = (User)query.uniqueResult();
+			TypedQuery<User> query = session.createQuery("from User where userId='"+user.getUserId()+"'");
+            User u = query.getSingleResult();
             tx.commit();
             if(u!=null) result = true;
         }catch(Exception ex){

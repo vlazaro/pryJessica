@@ -2,6 +2,9 @@ package com.actividad5.service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.TypedQuery;
+
 import com.actividad5.model.User;
 import com.actividad5.util.HibernateUtil;
 import org.hibernate.Query;
@@ -19,15 +22,18 @@ public class LoginService {
         }
     }
 
-    public User getUserByUserId(String userId) {
+    @SuppressWarnings("unchecked")
+	public User getUserByUserId(String userId) {
         Session session = HibernateUtil.openSession();
         Transaction tx = null;
         User user = null;
         try {
             tx = session.getTransaction();
             tx.begin();
-            Query query = session.createQuery("from User where userId='"+userId+"'");
-            user = (User)query.uniqueResult();
+//            Query query = session.createQuery("from User where userId='"+userId+"'");
+//            user = (User)query.uniqueResult();
+            TypedQuery<User> query = session.createQuery("from User where userId='"+user.getUserId()+"'");
+            user = query.getSingleResult();
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
@@ -40,14 +46,17 @@ public class LoginService {
         return user;
     }
     
-    public List<User> getListOfUsers(){
+    @SuppressWarnings("unchecked")
+	public List<User> getListOfUsers(){
         List<User> list = new ArrayList<User>();
         Session session = HibernateUtil.openSession();
         Transaction tx = null;        
         try {
             tx = session.getTransaction();
             tx.begin();
-            list = session.createQuery("from User").list();                        
+            TypedQuery<User> query = session.createQuery("FROM User");
+            list = query.getResultList();
+           // list = session.createQuery("from User").list();                        
             tx.commit();
         } catch (Exception e) {
             if (tx != null) {
