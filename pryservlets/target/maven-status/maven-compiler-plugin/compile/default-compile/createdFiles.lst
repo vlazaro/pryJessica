@@ -1,0 +1,6 @@
+com/actividad5/service/RegisterService.class
+com/actividad5/util/HibernateUtil.class
+com/actividad5/controller/LoginServlet.class
+com/actividad5/service/LoginService.class
+com/actividad5/controller/RegisterServlet.class
+com/actividad5/model/User.class
