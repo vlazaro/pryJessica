@@ -19,9 +19,9 @@
 		<property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
 
 		<!-- Mapping With Model Class Containing Annotations -->
-		<mapping class="com.orm.entity.Cuentasbancaria" />
+		<mapping class="com.orm.entity.CuentasBancarias" />
 		<mapping class="com.orm.entity.Historial" />
-		<mapping class="com.orm.entity.Operacione" />
+		<mapping class="com.orm.entity.Operaciones" />
 		<mapping class="com.orm.entity.Propietario" />
 		
 		
