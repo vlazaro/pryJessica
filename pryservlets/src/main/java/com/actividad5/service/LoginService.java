@@ -3,14 +3,15 @@ package com.actividad5.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 
 import com.actividad5.model.User;
 import com.actividad5.util.HibernateUtil;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+@Stateless
 public class LoginService {
 
     public boolean authenticate(String userId, String password) {
@@ -30,8 +31,7 @@ public class LoginService {
         try {
             tx = session.getTransaction();
             tx.begin();
-//            Query query = session.createQuery("from User where userId='"+userId+"'");
-//            user = (User)query.uniqueResult();
+
             TypedQuery<User> query = session.createQuery("from User where userId='"+ userId +"'");
             user = query.getSingleResult();
             tx.commit();

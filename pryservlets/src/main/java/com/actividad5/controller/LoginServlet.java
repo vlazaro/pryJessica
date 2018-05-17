@@ -2,6 +2,8 @@
 package com.actividad5.controller;
 
 import java.io.IOException;
+
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,11 +15,14 @@ import com.actividad5.service.LoginService;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
 
+	@EJB
+	LoginService loginService;
+	
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {        
         String userId = request.getParameter("userId");        
         String password = request.getParameter("password");
-        LoginService loginService = new LoginService();
+        
         boolean result = loginService.authenticate(userId, password);
         User user = loginService.getUserByUserId(userId);
         if(result == true){

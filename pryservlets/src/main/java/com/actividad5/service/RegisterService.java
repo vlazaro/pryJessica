@@ -4,11 +4,13 @@ package com.actividad5.service;
 import com.actividad5.model.User;
 import com.actividad5.util.HibernateUtil;
 
+import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+@Stateless
 public class RegisterService {
         
     public boolean register(User user){
@@ -39,8 +41,6 @@ public class RegisterService {
         try{
             tx = session.getTransaction();
             tx.begin();
-            //Query query = session.createQuery("from User where userId='"+user.getUserId()+"'");
-            // User u = (User)query.uniqueResult();
 			TypedQuery<User> query = session.createQuery("from User where userId='"+user.getUserId()+"'");
             User u = query.getSingleResult();
             tx.commit();
