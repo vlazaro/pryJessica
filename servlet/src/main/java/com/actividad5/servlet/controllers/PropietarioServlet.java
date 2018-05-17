@@ -3,6 +3,7 @@ package com.actividad5.servlet.controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +20,7 @@ import com.actividad5.servlet.service.PropietarioService;
 public class PropietarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@EJB
 	PropietarioService propservice;
 
 	public PropietarioServlet() {

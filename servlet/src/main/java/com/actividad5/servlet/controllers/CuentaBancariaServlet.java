@@ -39,8 +39,6 @@ public class CuentaBancariaServlet extends HttpServlet {
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
 	
-		//ctaservice = new CuentasBancariasService();
-		//proservice = new PropietarioService();
 		response.setContentType("text/html;charset=UTF-8");
 		try (PrintWriter out = response.getWriter()) {
 			String estado =null;

@@ -2,12 +2,9 @@ package com.actividad5.servlet.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
-
 import org.hibernate.Transaction;
-
 import com.activida5.servlet.domain.Cuentasbancaria;
 
 @Stateless

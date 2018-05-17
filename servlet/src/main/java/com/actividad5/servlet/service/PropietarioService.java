@@ -10,15 +10,12 @@ import com.activida5.servlet.domain.Propietario;
 
 @Stateless
 public class PropietarioService extends BaseHibernate{
-
 	public void save(Propietario prop) {
 		super.save(prop);
 	}
 	public void delete(Propietario prop) {
 		super.delete(prop);
-		
 	}
-	
 	public Propietario findbydni(String dni) {
 		 Propietario  prop = null;
 		 Transaction tx = this.session.getTransaction();

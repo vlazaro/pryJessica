@@ -14,6 +14,7 @@ import java.util.List;
 @NamedQueries({
 @NamedQuery(name="Cuentasbancaria.findAll", query="SELECT c FROM Cuentasbancaria c"),
 @NamedQuery(name="Cuentabancaria.findByNumCuenta", query="SELECT c FROM Cuentasbancaria c where c.numcuenta = :cuenta")
+
 })
 public class Cuentasbancaria implements Serializable {
 	private static final long serialVersionUID = 1L;
