@@ -9,8 +9,6 @@ public class Operacion {
 	private String tipo;
 	private Double cantidad;
 	private Double saldoActualizado;
-	private int id_cuenta;
-	
 	
 	public Date getFecha_hora() {
 		return fecha_hora;
@@ -31,12 +29,6 @@ public class Operacion {
 		this.cantidad = cantidad;
 	}
 	
-	public int getId_cuenta() {
-		return id_cuenta;
-	}
-	public void setId_cuenta(int id_cuenta) {
-		this.id_cuenta = id_cuenta;
-	}
 	public int getId() {
 		return id;
 	}
@@ -49,5 +41,16 @@ public class Operacion {
 	public void setSaldoActualizado(Double saldoActualizado) {
 		this.saldoActualizado = saldoActualizado;
 	}
+	@Override
+	public String toString() {
+		return "Operacion [id=" + id + ", fecha_hora=" + fecha_hora + ", tipo=" + tipo + ", cantidad=" + cantidad
+				+ ", saldoActualizado=" + saldoActualizado + "]";
+	}
+	public int getId_cuenta() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	
 
 }

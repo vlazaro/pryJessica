@@ -2,22 +2,25 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="cbxTipoConsulta" key="selection"/>
+		<item value="where" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="cbxTipoConsulta"/>
-			<item value="tblOperaciones"/>
-			<item value="modifcar"/>
-			<item value="BreakfastElement"/>
-			<item value="xjc-typedef-target"/>
-			<item value="pre-init"/>
-			<item value="project"/>
-			<item value="src.dir"/>
+			<item value="where"/>
+			<item value="selectLibrosByAutor"/>
+			<item value="ejecutarConsultaXQ"/>
+			<item value="URI"/>
+			<item value="eliminarPropietario"/>
+			<item value="DatabaseManager"/>
+			<item value="coleOperaciones"/>
+			<item value="colePropietarios"/>
 		</list>
 		<list key="replacehistory">
+			<item value="colePropietarios"/>
+			<item value=" "/>
+			<item value="&quot;&quot;"/>
 			<item value="OperacionElement"/>
 		</list>
 	</section>

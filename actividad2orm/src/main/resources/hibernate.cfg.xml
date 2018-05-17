@@ -11,8 +11,8 @@
 		<!-- Database Connection Settings -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/operacionesbancarias</property>
-		<property name="hibernate.connection.username">be3aapi</property>
-		<property name="hibernate.connection.password">be3aapi</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">root</property>
 		<property name="show_sql">true</property>
 
 		<!-- Specifying Session Context -->
