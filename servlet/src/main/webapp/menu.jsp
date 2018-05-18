@@ -42,6 +42,13 @@
 							</tr>
 							<tr>
 							  <td>
+							  <a href="/servlet/historial?action=numrojo"> Mantenimiento de Operaciones</a>
+							  </td>
+							</tr>
+							
+							
+							<tr>
+							  <td>
 							  <a href="/servlet/historial.html"> Reportes</a>
 							  </td>
 							</tr>
